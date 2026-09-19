@@ -34,7 +34,7 @@ app.use(express.json())
 
 app.get('/produtos',  async (req, res) =>{
     let produtos = await Produto.find()
-    req.json(produtos)
+    res.json(produtos)
 
 })
 
@@ -48,8 +48,14 @@ app.put('/produtos:id', async (req, res) => {
 app.post('/produtos', async (req, res) => {
 
 
-    let produto = req.body
-    res.json(produto)
+    try {
+        let novoproduto= req.body
+        let produtoNovo = await Produto.create(novoproduto)
+        res.json(produtoNovo)
+    }
+    catch(error){
+        console.log(error)
+    }
 
 
 })
