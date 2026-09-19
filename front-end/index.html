@@ -53,7 +53,7 @@
             </div>
         </section>
         <section id="sectionProdutos">
-            <div id="produto">
+            <div id="produto" style="display: none;">
                 <img src="images (1).jpg" alt="">
                 <div>
                     <h1 id="titulopro">Fone de ouvido Bluetooth</h1>
@@ -92,6 +92,53 @@
             </a>
         </div>
     </footer>
+    <section id="fundo-preto" class="po" >
+
+        <div id="popup">
+            <h1>Novo Produto</h1>
+            <div id="a1">
+                <div id="s1">
+                    <label for="nomep">Nome do produto</label>
+                    <input type="text" name="" id="nomep" placeholder="Ex: Mouse Gamer">
+                </div>
+                <div id="s2">
+                    <label for="categoria">Categoria</label>
+                    <select id="categoria" name="categoria"  required>
+                        <option value="" disabled selected>Selecione uma categoria...</option>
+                        <option value="eletronicos">Eletrônicos</option>
+                        <option value="Acessórios">Acessórios</option>
+                        <option value="Moveis">Moveis</option>
+                        <option value="Roupas">Roupas</option>
+                        <option value="Livros">Livros</option>
+                    </select>
+                </div>
+            </div>
+            <div id="a2">
+                <div id="g1">
+                    <label for="precop" >Preço</label>
+                    <input type="number" name="" id="precop" placeholder="Ex: 129.90">
+                </div>
+                <div id="g2">
+                    <label for="catep">Estoque</label>
+                    <input type="number" placeholder="Ex: 10" id="catep">
+                </div>
+            </div>
+            <div id="a3">
+                <label for="descp">Descrição</label>
+                <input type="text" name="" id="descp" placeholder="Digite a descrição do produto">
+            </div>
+            <div id="a4">
+                <label for="imgp">Imagem(URL)</label>
+                <input type="text" name="" id="imgp" placeholder="https://exemplo.com/imagem.jpg">
+            </div>
+            <div id="a5">
+                <button id="canbtn">Cancelar</button>
+                <button id="cadasbtn">Cadastrar</button>
+            </div>
+
+        </div>
+
+    </section>
     <script src="main.js"></script>
 </body>
 </html>

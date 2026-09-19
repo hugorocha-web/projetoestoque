@@ -159,7 +159,7 @@ main{
 }
 footer{
     display: flex;
-    z-index: 999;
+    z-index: 998;
     position: fixed;
     justify-content: center;
     align-items: center;
@@ -199,6 +199,7 @@ footer{
     }
     .fa-plus:hover{
         color: rgb(211, 211, 211);
+        background-color: #1c72a3;
 
     }
     #a4{
@@ -212,4 +213,166 @@ footer{
     i:hover{
         color: #1e84be;
     }
+}
+#fundo-preto{
+    display: none;
+    z-index: 999;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    top: 0%;
+    background-color: rgba(0, 0, 0, 0.568);
+    width: 100vw;
+    height: 100vh;
+
+    div#popup{
+        display: flex;
+        width: 90vw;
+        background-color: rgb(255, 255, 255);
+        min-height: 500px;
+        border-radius: 20px;
+        padding: 20px;
+        font-family: Arial, Helvetica, sans-serif;
+        display: flex;
+        flex-direction: column;
+        input:focus{
+            outline: none;
+        }
+        input{
+            border: none;
+        }
+        h1{
+            margin-bottom: 14px;
+        }
+        #a1{
+            display: flex;
+            margin-bottom: 30px;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+            
+            #s1{
+                display: flex;
+                flex-direction: column;
+                label{
+                    font-size: 1.3em;
+                }
+                input{
+                    border: none;
+                    background-color: rgb(243, 243, 243);
+                    padding: 10px;
+                    border-radius: 4px;
+                    height: 50px;
+                }
+            }
+            #s2{
+                display: flex;
+                flex-direction: column;
+                label{
+                    font-size: 1.3em;
+                }
+                select{
+                    border: none;
+                    background-color: rgb(243, 243, 243);
+                    padding: 9px;
+                    border-radius: 4px;
+                    height: 50px;
+                }
+            }
+        }
+        #a2{
+            display: flex;
+            margin-bottom: 30px;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+            #g1{
+                display: flex;
+                flex-direction: column;
+                label{
+                    font-size: 1.3em;
+                }
+                input{
+                    border: none;
+                    background-color: rgb(243, 243, 243);
+                    padding: 10px;
+                    border-radius: 4px;
+                    height: 50px;
+                }
+            }
+            #g2{
+                display: flex;
+                flex-direction: column;
+                label{
+                    font-size: 1.3em;
+                }
+                input{
+                    border: none;
+                    background-color: rgb(243, 243, 243);
+                    padding: 9px;
+                    border-radius: 4px;
+                    height: 50px;
+                }
+            }
+        }
+        #a3{
+            align-self: center;
+            margin-bottom: 30px;
+            label{
+                    font-size: 1.3em;
+                }
+            input{
+                border: none;
+                background-color: rgb(243, 243, 243);
+                padding: 9px;
+                border-radius: 4px;
+                height: 50px;
+                width: 240px;
+            }
+        }
+        #a4{
+            margin-bottom: 20px;
+            align-self: center;
+            label{
+                    font-size: 1.3em;
+                }
+            input{
+                border: none;
+                background-color: rgb(243, 243, 243);
+                padding: 9px;
+                border-radius: 4px;
+                height: 50px;
+                width: 240px;
+            }
+        }
+        #a5{
+            align-self: center;
+            display: flex;
+            button{
+                max-width: 700px;
+                width: 200px;
+                border: none;
+                padding: 10px;
+                font-size: 1.4em;
+                border-radius: 10px;
+                transition-duration: 0.4s;
+            }
+            #canbtn{
+                margin-right: 10px;
+            }
+            #canbtn:hover{
+                background-color: #bbbbbb;
+            }
+            #cadasbtn{
+                color: aliceblue;
+                background-color: #1e84be;
+            }
+            #cadasbtn:hover{
+                color: rgb(216, 216, 216);
+                background-color: #0f405c;
+            }
+        }
+    }
+
+}
+#fundo-preto.po.ligado {
+    display: flex;
 }
