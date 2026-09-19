@@ -1,0 +1,108 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+header{
+    padding: 22px;
+    display: flex;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.082);
+    i{
+        font-size: 2.5em;
+        color: rgb(30, 132, 190);
+    }
+    h1{
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 1.8em;
+        margin-left: 10px;
+        margin-bottom: 10px;
+    }
+}
+main{
+    
+
+     #resumos{
+        padding: 19px;
+
+        #bemvindo{
+            margin-left: 10px;
+            margin-bottom: 50px;
+            h1{
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                
+            }
+            p{
+                font-size: 1.2em;
+                color: rgb(61, 61, 61);
+            }
+        }
+        #res{
+            margin-left: 40px;
+            .itensre{
+                margin-bottom: 70px;
+                margin-left: 30px;
+                justify-content: flex-start;
+                display: flex;
+                i{
+                    font-size: 3.3em
+                }
+                div{
+                    margin-left: 30px;
+                    p{
+                        font-family: Verdana, Geneva, Tahoma, sans-serif;
+                        margin-bottom: 10px;
+                        font-size: 1.3em;
+                        color: rgb(53, 53, 53);
+                    }
+                    h2{
+                        font-size: 1.8em;
+                        font-weight: bold;
+                        font-family: Arial, Helvetica, sans-serif;
+                    }
+                    
+                }
+                .fa-box{
+                    color: rgb(30, 132, 190);
+                }
+                .fa-layer-group{
+                    color: rgb(58, 223, 25);
+                }
+                .fa-list{
+                    color: rgb(223, 167, 13);
+                }
+            }
+        }
+        #ult{
+            margin: auto;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            max-width: 620px;
+            h2{
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                    
+            }
+            div{
+                display: flex;
+                
+                p{
+                    margin-right: 10px;
+                    color: rgb(30, 132, 190);
+                    font-size: 1.1em;
+                    font-weight: bold;
+                    font-family: Arial, Helvetica, sans-serif;
+
+                }
+                i{
+                    color: rgb(30, 132, 190);
+                    font-size: 1.1em;
+                    margin-top: 2px;
+                }
+            }
+
+        }
+
+     }
+
+
+}
