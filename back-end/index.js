@@ -93,11 +93,18 @@ app.get('/produtos/:nome',  async (req, res) =>{
 
 })
 
-app.put('/produtos:id', async (req, res) => {
-    
+app.put('/produtos/:id', async (req, res) => {
 
+    const id = req.params.id
 
+    const produto = await Produto.findByIdAndUpdate(
+        id,
+        req.body,
+        { returnDocument: 'after' }
+    )
 
+    res.json(produto)
+    console.log(produto)
 })
 app.delete('/produtos/:nome', async (req, res)=>{
     try {

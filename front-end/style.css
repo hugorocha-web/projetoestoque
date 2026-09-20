@@ -399,6 +399,14 @@ footer{
                 color: rgb(216, 216, 216);
                 background-color: #0f405c;
             }
+            #edit{
+                color: aliceblue;
+                background-color: #1e84be;
+            }
+            #edit:hover{
+                color: aliceblue;
+                background-color: #125175;
+            }
         }
     }
 

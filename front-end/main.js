@@ -28,6 +28,7 @@ let btncancelarcate = document.querySelector('#cancatebtn')
 let clonepro = document.querySelector('#popup-escuroprodutos')
 let popuppro = document.querySelector('#popup-produto')
 let btnfa = document.querySelector('.fa-x')
+let po = document.querySelector('#popup')
 btnfa.addEventListener('click', desligar)
 function desligar(){
     
@@ -74,18 +75,35 @@ btncancelar.addEventListener('click', ()=>{
         fundoPreto.classList.remove('ligado')
     }
 })
-
+let btnedit = document.querySelector('#edit')
+btnedit.addEventListener('click', atualizarpro)
 btnAdicionar.addEventListener('click', ()=>{
+    document.querySelector('#nomep').value = ''
+    
+    document.querySelector('#precop').value= ''
+
+    document.querySelector('#catep').value= ''
+
+    document.querySelector('#categoria').value= ''
+
+    document.querySelector('#descp').value= ''
+    document.querySelector('#imgp').value= ''
     console.log('aq')
     console.log(fundoPreto)
     fundoPreto.classList.toggle('ligado')
+    fundoPreto.querySelector("#title").textContent = "Novo Produto"
+    btncadastrar.style.display = 'inline'
+
+    btnedit.style.display = 'none'
 
 
 
 })
 
 let btncadastrar = document.querySelector('#cadasbtn')
+
 btncadastrar.addEventListener('click', criarProduto)
+
 async function criarProduto() {
     let nome = document.querySelector('#nomep').value
     
@@ -189,10 +207,26 @@ async function listarProdutos() {
                 
             })
             clone.style.display = 'flex'
+            clone.dataset.id = jsonInvertido[i]._id
             clone.querySelector('#titulopro').textContent = jsonInvertido[i].nome
             clone.querySelector('#categoriapro').textContent = jsonInvertido[i].categoria
             clone.querySelector('#precopro').textContent = "R$ " + jsonInvertido[i].preco
             clone.querySelector('#estoquepro').textContent =jsonInvertido[i].estoque
+            clone.querySelector(".fa-pen").addEventListener('click', async (event)=>{
+                po.dataset.id = clone.dataset.id
+                btncadastrar.style.display = 'none'
+                btnedit.style.display='inline'
+                event.stopPropagation();
+                fundoPreto.classList.toggle('ligado')
+                fundoPreto.querySelector("#title").textContent = "Editar Produto"
+                document.querySelector('#nomep').value = event.currentTarget.previousElementSibling.children[0].textContent
+              
+                document.querySelector('#precop').value = event.currentTarget.previousElementSibling.children[2].textContent.slice(3)
+                document.querySelector('#catep').value = event.currentTarget.previousElementSibling.children[3].children[1].textContent
+                
+                
+            })
+            
             clone.querySelector('#iconelixo').addEventListener('click', async (event) => {
                 event.stopPropagation();
                 let nomehere = event.currentTarget.previousElementSibling.previousElementSibling.children[0].textContent
@@ -242,6 +276,43 @@ async function listarProdutos() {
 
 
 }
+async function atualizarpro(){
+    let nome = document.querySelector('#nomep').value
+    
+    let preco = document.querySelector('#precop').value
+
+    let estoque = document.querySelector('#catep').value
+
+    let categoria = document.querySelector('#categoria').value
+
+    let descrição = document.querySelector('#descp').value
+
+    let imagem = document.querySelector('#imgp').value
+    if(nome === '' || preco === '' || estoque === '' || categoria === '' || descrição === '' || imagem === ''){
+        return
+    }
+    try {
+        let ids = po.dataset.id
+        let ajeitado = await fetch(`http://localhost:3000/produtos/${ids}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                nome: nome,
+                preco: preco,
+                estoque: estoque,
+                categoria: categoria,
+                descrição: descrição,
+                imagem: imagem
+            })
+        })
+        listarProdutos()
+    } 
+    catch (error) {
+        console.log(error)
+    }
+}
 async function ultimosProdutos() {
     sectionP.textContent = ''
     try {
@@ -272,7 +343,8 @@ async function ultimosProdutos() {
             clone.querySelector('#titulopro').textContent = jsonInvertido[i].nome
             clone.querySelector('#categoriapro').textContent = jsonInvertido[i].categoria
             clone.querySelector('#precopro').textContent = "R$ " + jsonInvertido[i].preco
-            clone.querySelector('#estoquepro').textContent =jsonInvertido[i].estoque
+
+            clone.querySelector('#estoquepro').textContent = jsonInvertido[i].estoque
             let situacao;
             if(jsonInvertido[i].estoque >=1){
                 situacao = "em estoque."
