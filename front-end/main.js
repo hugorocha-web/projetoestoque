@@ -5,11 +5,19 @@ let clonado = document.querySelector('#produto')
 let sectionP = document.querySelector('#sectionProdutos')
 let btnprodutosadd = document.querySelector('.btnprodutos')
 btnprodutosadd.addEventListener('click', paglistar)
-console.log(btnprodutosadd)
+
+let paglistarprodutos = document.querySelector('#paglistarprodutos')
 let paglista = document.querySelector('#listadeprodutos')
 let inicio = document.querySelector('#inicio')
+let btninicio = document.querySelector('.btniniciar')
+btninicio.addEventListener('click', paginicio)
+function paginicio(){
+    paglistarprodutos.style.display = "none"
+    inicio.style.display = "block"
+}
 function paglistar(){
     inicio.style.display = "none"
+    paglistarprodutos.style.display = "block"
     listarProdutos()
     
 
