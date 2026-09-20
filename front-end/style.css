@@ -120,6 +120,9 @@ main{
             div{
                 margin-top: 10px;
                 #titulopro{
+                    min-width: 100px;
+                    word-break: break-word;
+                    white-space: normal;
                     font-size: 1.3em;
                     font-family: Arial, Helvetica, sans-serif;
 
@@ -450,6 +453,9 @@ footer{
             div{
                 margin-top: 10px;
                 #titulopro{
+                    min-width: 100px;
+                    word-break: break-word;
+                    white-space: normal;
                     font-size: 1.3em;
                     font-family: Arial, Helvetica, sans-serif;
 
@@ -467,7 +473,7 @@ footer{
                 }
                 div#sa{
                     display: flex;
-                    justify-content: space-between;
+                    justify-content: flex-start;
                     div{
                         display: flex;
                         background-color: darkgrey;

@@ -327,6 +327,13 @@ async function criarProduto() {
             fundoPreto.classList.remove('ligado')
         }
         listarProdutos()
+        carregarCategorias().then((valor)=>{
+        document.querySelector('#totalcate').textContent = valor
+        })
+        ultimosProdutos().then(([valor, valor2])=>{
+            document.querySelector('#totalp').textContent = valor
+            document.querySelector('#totalesto').textContent = valor2
+        })
 
 
     } 
@@ -403,9 +410,16 @@ async function ultimosProdutos() {
         let json = await dados.json()
         let limite = Math.min(json.length, 4)
         console.log(limite)
-        
+        let cont=0;
+        console.log(json)
+        for(let i = 0; i < json.length; i++){
+            if(json[i].estoque >= 1){
+                console.log(json[i].nome)
+                cont++
+            }
+        }
         for(let i = 0; i < limite; i++){
-
+            
             let clone = clonado.cloneNode(true)
             clone.style.display = 'flex'
             clone.querySelector('#titulopro').textContent = json[i].nome
@@ -422,7 +436,7 @@ async function ultimosProdutos() {
 
 
         }
-        return json.length;
+        return [json.length, cont];
         
 
 
@@ -459,6 +473,7 @@ async function carregarCategorias() {
 
         }
         console.log(select)
+        return json.length
         
 
 
@@ -472,11 +487,14 @@ async function carregarCategorias() {
 
 }
 window.onload = function() {
-    carregarCategorias()
-    paglistarprodutos.style.display = "none"
-    ultimosProdutos().then((valor)=>{
-            document.querySelector('#totalp').textContent = valor
+    carregarCategorias().then((valor)=>{
+        document.querySelector('#totalcate').textContent = valor
     })
-    console.log(totalp)   
+    paglistarprodutos.style.display = "none"
+    ultimosProdutos().then(([valor, valor2])=>{
+        document.querySelector('#totalp').textContent = valor
+        document.querySelector('#totalesto').textContent = valor2
+    })
+    console.log(totalp, "ola")   
 
 };
