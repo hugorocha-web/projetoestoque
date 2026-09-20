@@ -13,254 +13,8 @@ let btninicio = document.querySelector('.btniniciar')
 btnvertodos.addEventListener('click', paglistar)
 btninicio.addEventListener('click', paginicio)
 let btn1 = document.querySelector('.a11')
+let btns = document.querySelector('#btns')
 btn1.addEventListener('click', listarProdutos)
-let btn2 = document.querySelector('.a12')
-btn2.addEventListener('click', async ()=>{
-    btn1.classList.remove('ativo')
-    btn2.classList.add('ativo')
-    btn3.classList.remove('ativo')
-    btn4.classList.remove('ativo')
-    btn5.classList.remove('ativo')
-    btn6.classList.remove('ativo')
-    paglista.textContent = ''
-    try {
-        
-        let dados = await fetch('http://localhost:3000/produtos', {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-    })
-        let json = await dados.json()
-        console.log(json)
-        for(let i = 0; i< json.length; i++){
-            if(json[i].categoria === "eletronico"){
-                let clone = clonado.cloneNode(true)
-                console.log(clone)
-                clone.style.display = 'flex'
-                clone.querySelector('#titulopro').textContent = json[i].nome
-                clone.querySelector('#categoriapro').textContent = json[i].categoria
-                clone.querySelector('#precopro').textContent = "R$ " + json[i].preco
-                clone.querySelector('#estoquepro').textContent =json[i].estoque
-                let img = clone.querySelector('#imgpro')
-                img.src = json[i].imagem
-                
-
-
-                paglista.appendChild(clone)
-            }
-
-        }
-
-
-    } 
-    catch (error) {
-        
-        console.log(error)
-
-    }
-
-
-
-})
-let btn3 = document.querySelector('.a13')
-btn3.addEventListener('click', async()=>{
-    btn1.classList.remove('ativo')
-    btn2.classList.remove('ativo')
-    btn3.classList.add('ativo')
-    btn4.classList.remove('ativo')
-    btn5.classList.remove('ativo')
-    btn6.classList.remove('ativo')
-    paglista.textContent = ''
-    try {
-        
-        let dados = await fetch('http://localhost:3000/produtos', {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-    })
-        let json = await dados.json()
-        console.log(json)
-        for(let i = 0; i< json.length; i++){
-            if(json[i].categoria === "Acessórios"){
-                let clone = clonado.cloneNode(true)
-                console.log(clone)
-                clone.style.display = 'flex'
-                clone.querySelector('#titulopro').textContent = json[i].nome
-                clone.querySelector('#categoriapro').textContent = json[i].categoria
-                clone.querySelector('#precopro').textContent = "R$ " + json[i].preco
-                clone.querySelector('#estoquepro').textContent =json[i].estoque
-                let img = clone.querySelector('#imgpro')
-                img.src = json[i].imagem
-                
-
-
-                paglista.appendChild(clone)
-            }
-
-        }
-
-
-    } 
-    catch (error) {
-        
-        console.log(error)
-
-    }
-
-
-
-})
-let btn4 = document.querySelector('.a14')
-btn4.addEventListener('click', async()=>{
-    btn1.classList.remove('ativo')
-    btn2.classList.remove('ativo')
-    btn3.classList.remove('ativo')
-    btn4.classList.add('ativo')
-    btn5.classList.remove('ativo')
-    btn6.classList.remove('ativo')
-    paglista.textContent = ''
-    try {
-        
-        let dados = await fetch('http://localhost:3000/produtos', {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-    })
-        let json = await dados.json()
-        console.log(json)
-        for(let i = 0; i< json.length; i++){
-            if(json[i].categoria === "Moveis"){
-                let clone = clonado.cloneNode(true)
-                console.log(clone)
-                clone.style.display = 'flex'
-                clone.querySelector('#titulopro').textContent = json[i].nome
-                clone.querySelector('#categoriapro').textContent = json[i].categoria
-                clone.querySelector('#precopro').textContent = "R$ " + json[i].preco
-                clone.querySelector('#estoquepro').textContent =json[i].estoque
-                let img = clone.querySelector('#imgpro')
-                img.src = json[i].imagem
-                
-
-
-                paglista.appendChild(clone)
-            }
-
-        }
-
-
-    } 
-    catch (error) {
-        
-        console.log(error)
-
-    }
-
-
-
-})
-let btn5 = document.querySelector('.a15')
-btn5.addEventListener('click', async()=>{
-    btn1.classList.remove('ativo')
-    btn2.classList.remove('ativo')
-    btn3.classList.remove('ativo')
-    btn4.classList.remove('ativo')
-    btn5.classList.add('ativo')
-    btn6.classList.remove('ativo')
-    paglista.textContent = ''
-    try {
-        
-        let dados = await fetch('http://localhost:3000/produtos', {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-    })
-        let json = await dados.json()
-        console.log(json)
-        for(let i = 0; i< json.length; i++){
-            if(json[i].categoria === "Roupas"){
-                let clone = clonado.cloneNode(true)
-                console.log(clone)
-                clone.style.display = 'flex'
-                clone.querySelector('#titulopro').textContent = json[i].nome
-                clone.querySelector('#categoriapro').textContent = json[i].categoria
-                clone.querySelector('#precopro').textContent = "R$ " + json[i].preco
-                clone.querySelector('#estoquepro').textContent =json[i].estoque
-                let img = clone.querySelector('#imgpro')
-                img.src = json[i].imagem
-                
-
-
-                paglista.appendChild(clone)
-            }
-
-        }
-
-
-    } 
-    catch (error) {
-        
-        console.log(error)
-
-    }
-
-
-
-    
-})
-let btn6 = document.querySelector('.a16')
-btn6.addEventListener('click', async()=>{
-    btn1.classList.remove('ativo')
-    btn2.classList.remove('ativo')
-    btn3.classList.remove('ativo')
-    btn4.classList.remove('ativo')
-    btn5.classList.remove('ativo')
-    btn6.classList.add('ativo')
-    paglista.textContent = ''
-    try {
-        
-        let dados = await fetch('http://localhost:3000/produtos', {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-    })
-        let json = await dados.json()
-        console.log(json)
-        for(let i = 0; i< json.length; i++){
-            if(json[i].categoria === "Livros"){
-                let clone = clonado.cloneNode(true)
-                console.log(clone)
-                clone.style.display = 'flex'
-                clone.querySelector('#titulopro').textContent = json[i].nome
-                clone.querySelector('#categoriapro').textContent = json[i].categoria
-                clone.querySelector('#precopro').textContent = "R$ " + json[i].preco
-                clone.querySelector('#estoquepro').textContent =json[i].estoque
-                let img = clone.querySelector('#imgpro')
-                img.src = json[i].imagem
-                
-
-
-                paglista.appendChild(clone)
-            }
-
-        }
-
-
-    } 
-    catch (error) {
-        
-        console.log(error)
-
-    }
-
-
-
-   
-})
 function paginicio(){
     paglistarprodutos.style.display = "none"
     inicio.style.display = "block"
@@ -268,7 +22,6 @@ function paginicio(){
 function paglistar(){
     inicio.style.display = "none"
     paglistarprodutos.style.display = "block"
-    btn1.classList.add('ativo')
     listarProdutos()
     
 
@@ -350,12 +103,6 @@ async function criarProduto() {
 }
 
 async function listarProdutos() {
-    btn1.classList.add('ativo')
-    btn2.classList.remove('ativo')
-    btn3.classList.remove('ativo')
-    btn4.classList.remove('ativo')
-    btn5.classList.remove('ativo')
-    btn6.classList.remove('ativo')
     paglista.textContent = ''
     try {
         
@@ -366,18 +113,19 @@ async function listarProdutos() {
         },
     })
         let json = await dados.json()
+        let jsonInvertido = [...json].reverse(); 
         console.log(json)
         for(let i = 0; i< json.length; i++){
 
             let clone = clonado.cloneNode(true)
             console.log(clone)
             clone.style.display = 'flex'
-            clone.querySelector('#titulopro').textContent = json[i].nome
-            clone.querySelector('#categoriapro').textContent = json[i].categoria
-            clone.querySelector('#precopro').textContent = "R$ " + json[i].preco
-            clone.querySelector('#estoquepro').textContent =json[i].estoque
+            clone.querySelector('#titulopro').textContent = jsonInvertido[i].nome
+            clone.querySelector('#categoriapro').textContent = jsonInvertido[i].categoria
+            clone.querySelector('#precopro').textContent = "R$ " + jsonInvertido[i].preco
+            clone.querySelector('#estoquepro').textContent =jsonInvertido[i].estoque
             let img = clone.querySelector('#imgpro')
-            img.src = json[i].imagem
+            img.src = jsonInvertido[i].imagem
             
 
 
@@ -412,6 +160,8 @@ async function ultimosProdutos() {
         console.log(limite)
         let cont=0;
         console.log(json)
+        let jsonInvertido = [...json].reverse(); 
+        console.log(jsonInvertido)
         for(let i = 0; i < json.length; i++){
             if(json[i].estoque >= 1){
                 console.log(json[i].nome)
@@ -422,12 +172,12 @@ async function ultimosProdutos() {
             
             let clone = clonado.cloneNode(true)
             clone.style.display = 'flex'
-            clone.querySelector('#titulopro').textContent = json[i].nome
-            clone.querySelector('#categoriapro').textContent = json[i].categoria
-            clone.querySelector('#precopro').textContent = "R$ " + json[i].preco
-            clone.querySelector('#estoquepro').textContent =json[i].estoque
+            clone.querySelector('#titulopro').textContent = jsonInvertido[i].nome
+            clone.querySelector('#categoriapro').textContent = jsonInvertido[i].categoria
+            clone.querySelector('#precopro').textContent = "R$ " + jsonInvertido[i].preco
+            clone.querySelector('#estoquepro').textContent =jsonInvertido[i].estoque
             let img = clone.querySelector('#imgpro')
-            img.src = json[i].imagem
+            img.src = jsonInvertido[i].imagem
             
 
 
@@ -467,6 +217,53 @@ async function carregarCategorias() {
             op.textContent = json[i].nome
             console.log(op)
             select.appendChild(op)
+            let botao = document.createElement('button')
+            botao.textContent = json[i].nome
+            botao.addEventListener('click', async (event)=>{
+                paglista.textContent = ''
+                try {
+                    
+                    let dados = await fetch('http://localhost:3000/produtos', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                })
+                    let json = await dados.json()
+                    console.log(json)
+                    for(let i = 0; i< json.length; i++){
+                        if(json[i].categoria ===event.target.textContent){
+                            
+                            let clone = clonado.cloneNode(true)
+                            console.log(clone)
+                            clone.style.display = 'flex'
+                            clone.querySelector('#titulopro').textContent = json[i].nome
+                            clone.querySelector('#categoriapro').textContent = json[i].categoria
+                            clone.querySelector('#precopro').textContent = "R$ " + json[i].preco
+                            clone.querySelector('#estoquepro').textContent =json[i].estoque
+                            let img = clone.querySelector('#imgpro')
+                            img.src = json[i].imagem
+                            
+
+
+                            paglista.appendChild(clone)
+
+                        }
+                    }
+
+
+                } 
+                catch (error) {
+                    
+                    console.log(error)
+
+                }
+
+
+
+            }
+            )
+            btns.appendChild(botao)
             
             
 

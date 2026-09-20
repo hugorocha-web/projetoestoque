@@ -140,7 +140,7 @@ main{
                 }
                 div#sa{
                     display: flex;
-                    justify-content: space-between;
+                    justify-content: flex-start;
                     div{
                         display: flex;
                         background-color: darkgrey;
