@@ -25,6 +25,10 @@ let cadascate = document.querySelector("#cadascatebtn")
 cadascate.addEventListener('click', addnovacate)
 let btnnocacate = document.querySelector("#novacate")
 let btncancelarcate = document.querySelector('#cancatebtn')
+let clonepro = document.querySelector('#popup-escuroprodutos')
+clonepro.addEventListener('click', ()=>{
+    clonepro.style.display = 'none'
+})
 btncancelarcate.addEventListener('click', ()=>{
     popup.style.display = "none"
 })
@@ -146,6 +150,33 @@ async function listarProdutos() {
         for(let i = 0; i< json.length; i++){
 
             let clone = clonado.cloneNode(true)
+            clone.addEventListener('click', async (event)=>{
+                console.log(event.currentTarget.children[1].children[0].textContent)
+                let nomeproduto = event.currentTarget.children[1].children[0].textContent
+                let dados = await fetch(`http://localhost:3000/produtos/${nomeproduto}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+                let jsonhere = await dados.json()
+                clonepro.querySelector('img').src = jsonhere.imagem
+                clonepro.querySelector('#tituloproduto').textContent = jsonhere.nome
+                let situacao;
+                if(jsonhere.estoque >=1){
+                    situacao = "em estoque."
+                }
+                else{
+                    situacao = "fora de estoque."
+                }
+                clonepro.querySelector('#situacaoproduto').textContent = situacao
+                clonepro.querySelector('#valorp').textContent = 'R$ '+jsonhere.preco
+                clonepro.querySelector('#estoquepro').textContent = "Estoque: "+jsonhere.estoque
+                clonepro.querySelector('#catepro').textContent = "Categoria: "+jsonhere.categoria
+                clonepro.querySelector('#descricaopro').textContent = jsonhere.descrição
+                clonepro.style.display = "flex"
+                
+            })
             console.log(clone)
             clone.style.display = 'flex'
             clone.querySelector('#titulopro').textContent = jsonInvertido[i].nome
@@ -363,7 +394,7 @@ async function carregarCategorias() {
 
 }
 async function addnovacate() {
-    let nomenovacate= document.querySelector('#catenova').value
+    let nomenovacate= document.querySelector('#catenova').value.toLowerCase()
     if(nomenovacate===''){
         return
     }

@@ -74,6 +74,22 @@ app.get('/produtos',  async (req, res) =>{
     res.json(produtos)
 
 })
+app.get('/produtos/:nome',  async (req, res) =>{
+    try {
+        const nome = req.params.nome;
+        const produto = await Produto.findOne({ nome: nome });
+
+        if (!produto) {
+        return res.status(404).json({ mensagem: "Produto não encontrado" });
+        }
+
+        return res.json(produto);
+    } 
+    catch (erro) {
+        return res.status(500).json({ mensagem: "Erro interno no servidor", detalhe: erro.message });
+    }
+
+})
 
 app.put('/produtos:id', async (req, res) => {
     
