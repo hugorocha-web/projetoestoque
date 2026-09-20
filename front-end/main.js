@@ -26,8 +26,14 @@ cadascate.addEventListener('click', addnovacate)
 let btnnocacate = document.querySelector("#novacate")
 let btncancelarcate = document.querySelector('#cancatebtn')
 let clonepro = document.querySelector('#popup-escuroprodutos')
+let popuppro = document.querySelector('#popup-produto')
+
 clonepro.addEventListener('click', ()=>{
     clonepro.style.display = 'none'
+})
+popuppro.addEventListener('click', ()=>{
+    console.log('oi')
+    clonepro.style.display = 'flex'
 })
 btncancelarcate.addEventListener('click', ()=>{
     popup.style.display = "none"
@@ -183,6 +189,14 @@ async function listarProdutos() {
             clone.querySelector('#categoriapro').textContent = jsonInvertido[i].categoria
             clone.querySelector('#precopro').textContent = "R$ " + jsonInvertido[i].preco
             clone.querySelector('#estoquepro').textContent =jsonInvertido[i].estoque
+            let situacao;
+            if(jsonInvertido[i].estoque >=1){
+                situacao = "em estoque."
+            }
+            else{
+                situacao = "fora de estoque."
+            }
+            clone.querySelector('#situacaopro').textContent = situacao
             let img = clone.querySelector('#imgpro')
             img.src = jsonInvertido[i].imagem
             
@@ -235,6 +249,14 @@ async function ultimosProdutos() {
             clone.querySelector('#categoriapro').textContent = jsonInvertido[i].categoria
             clone.querySelector('#precopro').textContent = "R$ " + jsonInvertido[i].preco
             clone.querySelector('#estoquepro').textContent =jsonInvertido[i].estoque
+            let situacao;
+            if(jsonInvertido[i].estoque >=1){
+                situacao = "em estoque."
+            }
+            else{
+                situacao = "fora de estoque."
+            }
+            clone.querySelector('#situacaopro').textContent = situacao
             let img = clone.querySelector('#imgpro')
             img.src = jsonInvertido[i].imagem
             
