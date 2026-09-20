@@ -436,10 +436,47 @@ async function ultimosProdutos() {
 
 
 }
+async function carregarCategorias() {
+    try {
+        
+        let dados = await fetch('http://localhost:3000/categorias', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    })
+        let json = await dados.json()
+        let select = document.querySelector('#categoria')
+        for(let i = 0; i < json.length; i++){
+            let op = document.createElement("option")
+            op.value = json[i].nome
+            op.textContent = json[i].nome
+            console.log(op)
+            select.appendChild(op)
+            
+            
+
+
+        }
+        console.log(select)
+        
+
+
+    } 
+    catch (error) {
+        
+        console.log(error)
+
+    }
+
+
+}
 window.onload = function() {
-  ultimosProdutos().then((valor)=>{
-        document.querySelector('#totalp').textContent = valor
-  })
-  console.log(totalp)   
+    carregarCategorias()
+    paglistarprodutos.style.display = "none"
+    ultimosProdutos().then((valor)=>{
+            document.querySelector('#totalp').textContent = valor
+    })
+    console.log(totalp)   
 
 };

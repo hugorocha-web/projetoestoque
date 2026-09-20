@@ -23,6 +23,12 @@ const produtoSchema = new mongoose.Schema({
 }, {timestamps: true}
 )
 
+const categoriaSchema = new mongoose.Schema({
+    nome: {type: String, required: true},
+}, {timestamps: true}
+)
+const Categoria = mongoose.model('Categoria', categoriaSchema)
+
 //criei o produto agora é mandar pra ele modelar
 const Produto = mongoose.model('Produto', produtoSchema)
 
@@ -31,6 +37,22 @@ const Produto = mongoose.model('Produto', produtoSchema)
 app.use(cors())
 app.use(express.json())
 
+app.get('/categorias', async (req, res)=>{
+    let categoria = await Categoria.find()
+    res.json(categoria)
+})
+
+app.post('/categorias', async (req, res)=>{
+    try {
+        let novacategoria= req.body
+        let nova = await Categoria.create(novacategoria)
+        res.json(nova)
+    }
+    catch(error){
+        console.log(error)
+    }
+
+})
 
 app.get('/produtos',  async (req, res) =>{
     let produtos = await Produto.find()
