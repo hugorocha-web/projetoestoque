@@ -14,17 +14,31 @@ btnvertodos.addEventListener('click', paglistar)
 btninicio.addEventListener('click', paginicio)
 let btn1 = document.querySelector('.a11')
 let btns = document.querySelector('#btns')
+let clonecate = document.querySelector('#cate')
+let colocarcate = document.querySelector('#categoriashere')
 let clonenao = document.querySelector('#naotemnada')
 btn1.addEventListener('click', listarProdutos)
+let btncategoria = document.querySelector('.btncategorias')
+btncategoria.addEventListener('click', pagcategorias)
+let pagcate = document.querySelector('#pagcategorias')
 function paginicio(){
     paglistarprodutos.style.display = "none"
     inicio.style.display = "block"
+    pagcate.style.display = "none"
 }
 function paglistar(){
     inicio.style.display = "none"
+    pagcate.style.display = "none"
     paglistarprodutos.style.display = "block"
     listarProdutos()
     
+
+}
+function pagcategorias(){
+    console.log('aq')
+    inicio.style.display = "none"
+    paglistarprodutos.style.display = "none"
+    pagcate.style.display = "block"
 
 }
 btncancelar.addEventListener('click', ()=>{
@@ -210,9 +224,29 @@ async function carregarCategorias() {
             'Content-Type': 'application/json'
         },
     })
+    let dadospro = await fetch('http://localhost:3000/produtos', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    })
+        let jsonpro = await dadospro.json()
         let json = await dados.json()
+        let contador = 0;
         let select = document.querySelector('#categoria')
         for(let i = 0; i < json.length; i++){
+            let clones = clonecate.cloneNode(true)
+            clones.querySelector('#nomecate').textContent = json[i].nome
+            for(let o = 0; o < jsonpro.length; o++){
+                if(jsonpro[o].categoria ===json[i].nome){
+                    contador++
+                }
+            }
+            clones.querySelector("#quantospro").textContent = contador
+            contador= 0;
+            clones.style.display = "grid"
+            
+            colocarcate.appendChild(clones)
             let op = document.createElement("option")
             op.value = json[i].nome
             op.textContent = json[i].nome
@@ -251,7 +285,7 @@ async function carregarCategorias() {
 
                             paglista.appendChild(clone)
                             
-                           
+                            
                         }
                         
                     }
@@ -275,7 +309,7 @@ async function carregarCategorias() {
             }
             )
             btns.appendChild(botao)
-            
+                
             
 
 
@@ -299,10 +333,10 @@ window.onload = function() {
         document.querySelector('#totalcate').textContent = valor
     })
     paglistarprodutos.style.display = "none"
+    pagcate.style.display = "none"
     ultimosProdutos().then(([valor, valor2])=>{
         document.querySelector('#totalp').textContent = valor
         document.querySelector('#totalesto').textContent = valor2
     })
     console.log(totalp, "ola")   
-
-};
+}

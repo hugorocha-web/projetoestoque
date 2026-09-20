@@ -507,3 +507,74 @@ footer{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     background-color: aliceblue;
 }
+#pagcategorias{
+
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+    top: 0%;
+    #cimacategoria{
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-around;
+        h1{
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        button{
+            display: flex;
+            align-items: center;
+            background-color:#1e84be;
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            color: #ffffff;
+            transition-duration: 0.4s;
+            i{
+                font-size: 1.6em;
+                margin-right: 4px;
+            }
+            p{
+                font-size: 1.5em;
+            }
+        }
+        button:hover{
+            background-color: #0f405c;
+        }
+    }
+    #itenscate{
+        border-bottom: 1px solid rgba(0, 0, 0, 0.082);
+        margin-top: 35px;
+        padding-bottom: 15px;
+        display: grid;
+        grid-template-rows: 1fr;
+        justify-items: center;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        grid-template-columns: 1fr 1fr 1fr;
+        #p1{
+            margin-left: -40px;
+        }
+    }
+    #categoriashere{
+        #cate{
+            margin: 35px 0px;
+            display: grid;
+            justify-items: center;
+            grid-template-rows: 1fr;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            grid-template-columns: 1fr 1.5fr 1fr;
+            i{
+                font-size: 1.4em;
+                color: red;
+            }
+            p{
+                font-size: 1.3em;
+            }
+            #nomecate{
+                margin-left: 15px;
+            }
+        }
+    }
+
+
+}
