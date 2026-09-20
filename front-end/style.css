@@ -578,3 +578,65 @@ footer{
 
 
 }
+#popup-escuronova{
+    display: none;
+    z-index: 999;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    top: 0%;
+    background-color: rgba(0, 0, 0, 0.568);
+    width: 100vw;
+    height: 100vh;
+
+    #popup-nova{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #ffffff;
+        padding: 50px;
+        border-radius: 20px;
+        h1{
+            align-self: flex-start;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            margin-bottom: 20px;
+
+        }
+        #a1{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 28px;
+            label{
+                font-size: 1.5em;
+                margin-bottom: 10px;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            input{
+                text-align: center;
+                width: 90%;
+                height: 35px;
+            }
+        }
+        #a2{
+            display: flex;
+            button{
+                border: none;
+                padding: 15px;
+                margin-left: 10px;
+                border-radius: 10px;
+                width: 100%;
+                font-size: 1.4em;
+                transition-duration: 0.4s;
+            }
+            #cadascatebtn{
+                background-color: #1e84be;
+                color: #ffffff;
+            }
+            #cadascatebtn:hover{
+                background-color: #124c6e;
+            }
+            
+        }
+    }
+}

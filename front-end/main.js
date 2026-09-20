@@ -21,6 +21,18 @@ btn1.addEventListener('click', listarProdutos)
 let btncategoria = document.querySelector('.btncategorias')
 btncategoria.addEventListener('click', pagcategorias)
 let pagcate = document.querySelector('#pagcategorias')
+let cadascate = document.querySelector("#cadascatebtn")
+cadascate.addEventListener('click', addnovacate)
+let btnnocacate = document.querySelector("#novacate")
+let btncancelarcate = document.querySelector('#cancatebtn')
+btncancelarcate.addEventListener('click', ()=>{
+    popup.style.display = "none"
+})
+btnnocacate.addEventListener('click', ()=>{
+    popup.style.display= 'flex'
+})
+let popup = document.querySelector('#popup-escuronova')
+
 function paginicio(){
     paglistarprodutos.style.display = "none"
     inicio.style.display = "block"
@@ -118,6 +130,7 @@ async function criarProduto() {
 }
 
 async function listarProdutos() {
+    btn1.classList.add('ativo')
     paglista.textContent = ''
     try {
         
@@ -216,6 +229,8 @@ async function ultimosProdutos() {
 
 }
 async function carregarCategorias() {
+    colocarcate.innerHTML =''
+
     try {
         
         let dados = await fetch('http://localhost:3000/categorias', {
@@ -242,6 +257,24 @@ async function carregarCategorias() {
                     contador++
                 }
             }
+            clones.querySelector('.fa-trash').addEventListener('click', async (event)=>{
+                let nomehere = event.currentTarget.previousElementSibling.previousElementSibling.textContent
+                console.log(nomehere)
+                let deletado = await fetch(`http://localhost:3000/categorias/${nomehere}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                
+            })
+                
+                
+                await carregarCategorias().then((valor)=>{
+                    document.querySelector('#totalcate').textContent = valor
+                })
+                
+
+            })
             clones.querySelector("#quantospro").textContent = contador
             contador= 0;
             clones.style.display = "grid"
@@ -255,6 +288,7 @@ async function carregarCategorias() {
             let botao = document.createElement('button')
             botao.textContent = json[i].nome
             botao.addEventListener('click', async (event)=>{
+                btn1.classList.remove('ativo')
                 paglista.textContent = ''
                 try {
                     
@@ -328,7 +362,36 @@ async function carregarCategorias() {
 
 
 }
+async function addnovacate() {
+    let nomenovacate= document.querySelector('#catenova').value
+    if(nomenovacate===''){
+        return
+    }
+    console.log('ads')
+    
+    try{
+        let enviar = await fetch('http://localhost:3000/categorias', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            nome: nomenovacate,
+        })
+    })
+        popup.style.display = 'none'
+        carregarCategorias()
+        
+
+
+    }
+    catch(error){
+        console.log(error)
+    }
+
+}
 window.onload = function() {
+    btn1.classList.add('ativo')
     carregarCategorias().then((valor)=>{
         document.querySelector('#totalcate').textContent = valor
     })

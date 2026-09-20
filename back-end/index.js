@@ -54,6 +54,21 @@ app.post('/categorias', async (req, res)=>{
 
 })
 
+app.delete('/categorias/:nome', async (req, res)=>{
+    try {
+        const nome = req.params.nome;
+        const categoriaDeletada = await Categoria.findOneAndDelete({ nome: nome });
+        console.log(categoriaDeletada);
+
+        return res.status(200).json({ mensagem: "Categoria deletada com sucesso!" });
+
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ erro: "Erro ao deletar categoria" });
+    }
+
+})
+
 app.get('/produtos',  async (req, res) =>{
     let produtos = await Produto.find()
     res.json(produtos)
