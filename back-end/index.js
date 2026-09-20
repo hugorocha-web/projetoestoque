@@ -6,7 +6,6 @@ const app = express()
 
 
 //primeiro iniciar o mongoose
-process.loadEnvFile()
 mongoose.connect(process.env.MONGODB_URI)
 .then(()=> console.log('banco conectado com sucesso'))
 //agora conectei o bando e adicionei o then 
