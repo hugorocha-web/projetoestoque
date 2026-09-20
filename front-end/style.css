@@ -498,3 +498,10 @@ footer{
 
 
 }
+#naotemnada{
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: aliceblue;
+}

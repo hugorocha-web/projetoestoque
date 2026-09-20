@@ -14,6 +14,7 @@ btnvertodos.addEventListener('click', paglistar)
 btninicio.addEventListener('click', paginicio)
 let btn1 = document.querySelector('.a11')
 let btns = document.querySelector('#btns')
+let clonenao = document.querySelector('#naotemnada')
 btn1.addEventListener('click', listarProdutos)
 function paginicio(){
     paglistarprodutos.style.display = "none"
@@ -231,9 +232,11 @@ async function carregarCategorias() {
                 })
                     let json = await dados.json()
                     console.log(json)
+                    let cont = 0;
                     for(let i = 0; i< json.length; i++){
                         if(json[i].categoria ===event.target.textContent){
-                            
+                            cont++
+
                             let clone = clonado.cloneNode(true)
                             console.log(clone)
                             clone.style.display = 'flex'
@@ -247,9 +250,17 @@ async function carregarCategorias() {
 
 
                             paglista.appendChild(clone)
-
+                            
+                           
                         }
+                        
                     }
+                    if(!cont >=1){
+                        let clone = clonenao.cloneNode(true)
+                        clone.style.display = "block"
+                        paglista.appendChild(clone)
+                    }
+                    
 
 
                 } 
