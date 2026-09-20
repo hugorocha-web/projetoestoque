@@ -346,9 +346,8 @@ async function carregarCategorias() {
             })
                 
                 
-                await carregarCategorias().then((valor)=>{
-                    document.querySelector('#totalcate').textContent = valor
-                })
+                location.reload();
+
                 
 
             })
@@ -457,7 +456,7 @@ async function addnovacate() {
         })
     })
         popup.style.display = 'none'
-        carregarCategorias()
+        location.reload();
         
 
 
