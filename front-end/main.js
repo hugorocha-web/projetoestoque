@@ -308,6 +308,8 @@ async function atualizarpro(){
             })
         })
         listarProdutos()
+        fundoPreto.classList.remove('ligado')
+        
     } 
     catch (error) {
         console.log(error)
@@ -378,137 +380,222 @@ async function ultimosProdutos() {
 
 }
 async function carregarCategorias() {
-    colocarcate.innerHTML =''
+    colocarcate.innerHTML = ''
 
     try {
-        
+
         let dados = await fetch('http://localhost:3000/categorias', {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-    })
-    let dadospro = await fetch('http://localhost:3000/produtos', {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-    })
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+
+        let dadospro = await fetch('http://localhost:3000/produtos', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+
         let jsonpro = await dadospro.json()
         let json = await dados.json()
-        let contador = 0;
+
+        let contador = 0
         let select = document.querySelector('#categoria')
-        for(let i = 0; i < json.length; i++){
+
+        for (let i = 0; i < json.length; i++) {
+
             let clones = clonecate.cloneNode(true)
+
             clones.querySelector('#nomecate').textContent = json[i].nome
-            for(let o = 0; o < jsonpro.length; o++){
-                if(jsonpro[o].categoria ===json[i].nome){
+
+            for (let o = 0; o < jsonpro.length; o++) {
+                if (jsonpro[o].categoria === json[i].nome) {
                     contador++
                 }
             }
-            clones.querySelector('.fa-trash').addEventListener('click', async (event)=>{
-                let nomehere = event.currentTarget.previousElementSibling.previousElementSibling.textContent
+
+            clones.querySelector('.fa-trash').addEventListener('click', async (event) => {
+
+                let nomehere = event.currentTarget
+                    .previousElementSibling
+                    .previousElementSibling
+                    .textContent
+
                 console.log(nomehere)
+
                 let deletado = await fetch(`http://localhost:3000/categorias/${nomehere}`, {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                
-            })
-                
-                
-                location.reload();
-
-                
-
-            })
-            clones.querySelector("#quantospro").textContent = contador
-            contador= 0;
-            clones.style.display = "grid"
-            
-            colocarcate.appendChild(clones)
-            let op = document.createElement("option")
-            op.value = json[i].nome
-            op.textContent = json[i].nome
-            console.log(op)
-            select.appendChild(op)
-            let botao = document.createElement('button')
-            botao.textContent = json[i].nome
-            botao.addEventListener('click', async (event)=>{
-                btn1.classList.remove('ativo')
-                paglista.textContent = ''
-                try {
-                    
-                    let dados = await fetch('http://localhost:3000/produtos', {
-                    method: 'GET',
+                    method: 'DELETE',
                     headers: {
                         'Content-Type': 'application/json'
-                    },
+                    }
                 })
+
+                location.reload()
+            })
+
+            clones.querySelector("#quantospro").textContent = contador
+
+            contador = 0
+
+            clones.style.display = "grid"
+
+            colocarcate.appendChild(clones)
+
+            let op = document.createElement("option")
+
+            op.value = json[i].nome
+            op.textContent = json[i].nome
+
+            select.appendChild(op)
+
+            let botao = document.createElement('button')
+
+            botao.textContent = json[i].nome
+
+            botao.addEventListener('click', async (event) => {
+
+                btn1.classList.remove('ativo')
+                paglista.textContent = ''
+
+                try {
+
+                    let dados = await fetch('http://localhost:3000/produtos', {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
+
                     let json = await dados.json()
+
                     console.log(json)
-                    let cont = 0;
-                    for(let i = 0; i< json.length; i++){
-                        if(json[i].categoria ===event.target.textContent){
+
+                    let cont = 0
+
+                    for (let i = 0; i < json.length; i++) {
+
+                        if (json[i].categoria === event.target.textContent) {
+
                             cont++
 
                             let clone = clonado.cloneNode(true)
+                            clone.addEventListener('click', async (event)=>{
+                                let nomeproduto = event.currentTarget.children[1].children[0].textContent
+                                let dados = await fetch(`http://localhost:3000/produtos/${nomeproduto}`, {
+                                method: 'GET',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                            })
+                                let jsonhere = await dados.json()
+                                clonepro.querySelector('img').src = jsonhere.imagem
+                                clonepro.querySelector('#tituloproduto').textContent = jsonhere.nome
+                                let situacao;
+                                if(jsonhere.estoque >=1){
+                                    situacao = "em estoque."
+                                }
+                                else{
+                                    situacao = "fora de estoque."
+                                }
+                                clonepro.querySelector('#situacaoproduto').textContent = situacao
+                                clonepro.querySelector('#valorp').textContent = 'R$ '+jsonhere.preco
+                                clonepro.querySelector('#estoquepro').textContent = "Estoque: "+jsonhere.estoque
+                                clonepro.querySelector('#catepro').textContent = "Categoria: "+jsonhere.categoria
+                                clonepro.querySelector('#descricaopro').textContent = jsonhere.descrição
+                                clonepro.style.display = 'flex'
+                                
+                                
+                            })
+
                             console.log(clone)
+
                             clone.style.display = 'flex'
+                            clone.dataset.id = json[i]._id
                             clone.querySelector('#titulopro').textContent = json[i].nome
                             clone.querySelector('#categoriapro').textContent = json[i].categoria
                             clone.querySelector('#precopro').textContent = "R$ " + json[i].preco
-                            clone.querySelector('#estoquepro').textContent =json[i].estoque
-                            let img = clone.querySelector('#imgpro')
-                            img.src = json[i].imagem
-                            
+                            clone.querySelector('#estoquepro').textContent = json[i].estoque
 
+                            let img = clone.querySelector('#imgpro')
+
+                            img.src = json[i].imagem
+
+                            clone.querySelector('#iconelixo').addEventListener('click', async (event) => {
+
+                                event.stopPropagation()
+
+                                let nomehere = event.currentTarget
+                                    .previousElementSibling
+                                    .previousElementSibling
+                                    .children[0]
+                                    .textContent
+
+                                console.log(nomehere)
+
+                                let deletado = await fetch(`http://localhost:3000/produtos/${nomehere}`, {
+                                    method: 'DELETE',
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    }
+                                })
+
+                                await listarProdutos()
+
+                                ultimosProdutos().then(([valor, valor2]) => {
+                                    document.querySelector('#totalp').textContent = valor
+                                    document.querySelector('#totalesto').textContent = valor2
+                                })
+
+                            })
+                            clone.querySelector(".fa-pen").addEventListener('click', async (event)=>{
+                                po.dataset.id = clone.dataset.id
+                                btncadastrar.style.display = 'none'
+                                btnedit.style.display='inline'
+                                event.stopPropagation();
+                                fundoPreto.classList.toggle('ligado')
+                                fundoPreto.querySelector("#title").textContent = "Editar Produto"
+                                document.querySelector('#nomep').value = event.currentTarget.previousElementSibling.children[0].textContent
+                            
+                                document.querySelector('#precop').value = event.currentTarget.previousElementSibling.children[2].textContent.slice(3)
+                                document.querySelector('#catep').value = event.currentTarget.previousElementSibling.children[3].children[1].textContent
+                            
+                            
+                            })
 
                             paglista.appendChild(clone)
-                            
-                            
                         }
-                        
                     }
-                    if(!cont >=1){
+
+                    if (cont === 0) {
+
                         let clone = clonenao.cloneNode(true)
+
                         clone.style.display = "block"
+
                         paglista.appendChild(clone)
                     }
-                    
 
+                } catch (error) {
 
-                } 
-                catch (error) {
-                    
                     console.log(error)
 
                 }
+            })
 
-
-
-            }
-            )
             btns.appendChild(botao)
-                
-            
-
-
         }
+
         console.log(select)
+
         return json.length
-        
 
+    } catch (error) {
 
-    } 
-    catch (error) {
-        
         console.log(error)
 
     }
-
-
 }
 async function addnovacate() {
     let nomenovacate= document.querySelector('#catenova').value.toLowerCase()
