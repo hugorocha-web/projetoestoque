@@ -499,6 +499,8 @@ footer{
 
 }
 #naotemnada{
+    margin: auto;
+    max-width: 400px;
     padding: 10px;
     border-radius: 10px;
     text-align: center;
