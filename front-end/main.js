@@ -5,12 +5,60 @@ let clonado = document.querySelector('#produto')
 let sectionP = document.querySelector('#sectionProdutos')
 let btnprodutosadd = document.querySelector('.btnprodutos')
 btnprodutosadd.addEventListener('click', paglistar)
-
+let btnvertodos = document.querySelector('#btnvertodos')
 let paglistarprodutos = document.querySelector('#paglistarprodutos')
 let paglista = document.querySelector('#listadeprodutos')
 let inicio = document.querySelector('#inicio')
 let btninicio = document.querySelector('.btniniciar')
+btnvertodos.addEventListener('click', paglistar)
 btninicio.addEventListener('click', paginicio)
+let btn1 = document.querySelector('.a11')
+btn1.addEventListener('click', listarProdutos)
+let btn2 = document.querySelector('.a12')
+btn2.addEventListener('click', ()=>{
+    btn1.classList.remove('ativo')
+    btn2.classList.add('ativo')
+    btn3.classList.remove('ativo')
+    btn4.classList.remove('ativo')
+    btn5.classList.remove('ativo')
+    btn6.classList.remove('ativo')
+})
+let btn3 = document.querySelector('.a13')
+btn3.addEventListener('click', ()=>{
+    btn1.classList.remove('ativo')
+    btn2.classList.remove('ativo')
+    btn3.classList.add('ativo')
+    btn4.classList.remove('ativo')
+    btn5.classList.remove('ativo')
+    btn6.classList.remove('ativo')
+})
+let btn4 = document.querySelector('.a14')
+btn4.addEventListener('click', ()=>{
+    btn1.classList.remove('ativo')
+    btn2.classList.remove('ativo')
+    btn3.classList.remove('ativo')
+    btn4.classList.add('ativo')
+    btn5.classList.remove('ativo')
+    btn6.classList.remove('ativo')
+})
+let btn5 = document.querySelector('.a15')
+btn5.addEventListener('click', ()=>{
+    btn1.classList.remove('ativo')
+    btn2.classList.remove('ativo')
+    btn3.classList.remove('ativo')
+    btn4.classList.remove('ativo')
+    btn5.classList.add('ativo')
+    btn6.classList.remove('ativo')
+})
+let btn6 = document.querySelector('.a16')
+btn6.addEventListener('click', ()=>{
+    btn1.classList.remove('ativo')
+    btn2.classList.remove('ativo')
+    btn3.classList.remove('ativo')
+    btn4.classList.remove('ativo')
+    btn5.classList.remove('ativo')
+    btn6.classList.add('ativo')
+})
 function paginicio(){
     paglistarprodutos.style.display = "none"
     inicio.style.display = "block"
@@ -18,6 +66,7 @@ function paginicio(){
 function paglistar(){
     inicio.style.display = "none"
     paglistarprodutos.style.display = "block"
+    btn1.classList.add('ativo')
     listarProdutos()
     
 
@@ -92,6 +141,12 @@ async function criarProduto() {
 }
 
 async function listarProdutos() {
+    btn1.classList.add('ativo')
+    btn2.classList.remove('ativo')
+    btn3.classList.remove('ativo')
+    btn4.classList.remove('ativo')
+    btn5.classList.remove('ativo')
+    btn6.classList.remove('ativo')
     paglista.textContent = ''
     try {
         
