@@ -3,6 +3,17 @@ let fundoPreto = document.querySelector('.po')
 let btncancelar = document.querySelector('#canbtn')
 let clonado = document.querySelector('#produto')
 let sectionP = document.querySelector('#sectionProdutos')
+let btnprodutosadd = document.querySelector('.btnprodutos')
+btnprodutosadd.addEventListener('click', paglistar)
+console.log(btnprodutosadd)
+let paglista = document.querySelector('#listadeprodutos')
+let inicio = document.querySelector('#inicio')
+function paglistar(){
+    inicio.style.display = "none"
+    listarProdutos()
+    
+
+}
 btncancelar.addEventListener('click', ()=>{
 
     if(fundoPreto.classList.contains('ligado')){
@@ -73,7 +84,7 @@ async function criarProduto() {
 }
 
 async function listarProdutos() {
-    sectionP.textContent = ''
+    paglista.textContent = ''
     try {
         
         let dados = await fetch('http://localhost:3000/produtos', {
@@ -93,10 +104,12 @@ async function listarProdutos() {
             clone.querySelector('#categoriapro').textContent = json[i].categoria
             clone.querySelector('#precopro').textContent = "R$ " + json[i].preco
             clone.querySelector('#estoquepro').textContent =json[i].estoque
+            let img = clone.querySelector('#imgpro')
+            img.src = json[i].imagem
             
 
 
-            sectionP.appendChild(clone)
+            paglista.appendChild(clone)
 
 
         }
@@ -112,6 +125,56 @@ async function listarProdutos() {
 
 
 }
+async function ultimosProdutos() {
+    sectionP.textContent = ''
+    try {
+        
+        let dados = await fetch('http://localhost:3000/produtos', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    })
+        let json = await dados.json()
+        let limite = Math.min(json.length, 4)
+        console.log(limite)
+        
+        for(let i = 0; i < limite; i++){
+
+            let clone = clonado.cloneNode(true)
+            clone.style.display = 'flex'
+            clone.querySelector('#titulopro').textContent = json[i].nome
+            clone.querySelector('#categoriapro').textContent = json[i].categoria
+            clone.querySelector('#precopro').textContent = "R$ " + json[i].preco
+            clone.querySelector('#estoquepro').textContent =json[i].estoque
+            let img = clone.querySelector('#imgpro')
+            img.src = json[i].imagem
+            
+
+
+            sectionP.appendChild(clone)
+            
+
+
+        }
+        return json.length;
+        
+
+
+    } 
+    catch (error) {
+        
+        console.log(error)
+
+    }
+
+
+
+}
 window.onload = function() {
-  listarProdutos()
+  ultimosProdutos().then((valor)=>{
+        document.querySelector('#totalp').textContent = valor
+  })
+  console.log(totalp)   
+
 };

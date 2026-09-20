@@ -9,74 +9,73 @@
 </head>
 <body>
 
-    <header>
-        <i class="fa-solid fa-box"></i>
-        <h1>Estoque De Produtos</h1>
-
-    </header>
-    <main>
-        <section id="resumos">
-            <div id="bemvindo">
-                <h1>Bem Vindo!</h1>
-                <p>Aqui está um resumo do estoque.</p>
-            </div>
-            <div id="res">
-                <div  class="itensre">
-                    <i class="fa-solid fa-box"></i>
-                    <div>
-                        <p>Total de Produtos</p>
-                        <h2>12</h2>
-                    </div>
+    <div id="inicio">
+        <header>
+            <i class="fa-solid fa-box"></i>
+            <h1>Estoque De Produtos</h1>
+        </header>
+        <main>
+            <section id="resumos">
+                <div id="bemvindo">
+                    <h1>Bem Vindo!</h1>
+                    <p>Aqui está um resumo do estoque.</p>
                 </div>
-                <div class="itensre">
-                    <i class="fa-solid fa-layer-group"></i>
-                    <div>
-                        <p>Categorias</p>
-                        <h2>12</h2>
-                    </div>
-                </div>
-                <div class="itensre">
-                    <i class="fa-solid fa-list"></i>
-                    <div>
-                        <p>Itens em Estoque</p>
-                        <h2>12</h2>
-                    </div>
-                </div>
-
-            </div>
-            <div id="ult">
-                <h2>Ultimos Produtos</h2>
-                <div>
-                    <p>ver todos</p>
-                    <i class="fa-solid fa-arrow-right-long"></i>
-                </div>
-            </div>
-        </section>
-        <section id="sectionProdutos">
-            <div id="produto" style="display: none;">
-                <img src="images (1).jpg" alt="">
-                <div>
-                    <h1 id="titulopro">Fone de ouvido Bluetooth</h1>
-                    <p id="categoriapro">Eletrónicos</p>
-                    <h2 id="precopro">R$ 199,90</h2>
-                    <div id="sa">
+                <div id="res">
+                    <div  class="itensre">
+                        <i class="fa-solid fa-box"></i>
                         <div>
-                            <i class="fa-solid fa-money-bill-trend-up"></i>
-                            <p id="situacaopro">em estoque</p>
+                            <p>Total de Produtos</p>
+                            <h2 id="totalp">12</h2>
                         </div>
-                        <p id="estoquepro">15</p>
                     </div>
-
+                    <div class="itensre">
+                        <i class="fa-solid fa-layer-group"></i>
+                        <div>
+                            <p>Categorias</p>
+                            <h2>12</h2>
+                        </div>
+                    </div>
+                    <div class="itensre">
+                        <i class="fa-solid fa-list"></i>
+                        <div>
+                            <p>Itens em Estoque</p>
+                            <h2>12</h2>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </section>
-    </main>
+                <div id="ult">
+                    <h2>Ultimos Produtos</h2>
+                    <div>
+                        <p>ver todos</p>
+                        <i class="fa-solid fa-arrow-right-long"></i>
+                    </div>
+                </div>
+            </section>
+            <section id="sectionProdutos">
+                <div id="produto" style="display: none;">
+                    <img src="images (1).jpg" alt="" id="imgpro">
+                    <div>
+                        <h1 id="titulopro">Fone de ouvido Bluetooth</h1>
+                        <p id="categoriapro">Eletrónicos</p>
+                        <h2 id="precopro">R$ 199,90</h2>
+                        <div id="sa">
+                            <div>
+                                <i class="fa-solid fa-money-bill-trend-up"></i>
+                                <p id="situacaopro">em estoque</p>
+                            </div>
+                            <p id="estoquepro">15</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
     <footer>
-        <div id="a1">
+        <div id="a1" >
             <i class="fa-solid fa-house"></i>
             <p>Inicio</p>
         </div>
-        <div id="a2">
+        <div id="a2" class="btnprodutos">
             <i class="fa-solid fa-boxes-stacked"></i>
             <p>Produtos</p>
         </div>
@@ -92,6 +91,24 @@
             </a>
         </div>
     </footer>
+    
+    <div id="listarprodutos">
+        <div id="cimah">
+           <h1>Produtos</h1>
+        </div>
+        <div id="btns">
+            <button id="a1">Todos</button>
+            <button id="a2">Eletronicos</button>
+            <button id="a3">Acessórios</button>
+            <button id="a4">Moveis</button>
+            <button id="a5">Roupas</button>
+            <button id="a6">livros</button>
+        </div>
+        <div id="listadeprodutos">
+            
+        </div>
+
+    </div>
     <section id="fundo-preto" class="po" >
 
         <div id="popup">
