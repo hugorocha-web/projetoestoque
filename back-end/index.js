@@ -49,7 +49,7 @@ app.post('/categorias', async (req, res)=>{
         res.json(nova)
     }
     catch(error){
-        console.log(error)
+        res.status(500).json({ mensagem: "Erro ao criar categoria" })
     }
 
 })
@@ -59,7 +59,9 @@ app.delete('/categorias/:nome', async (req, res)=>{
         const nome = req.params.nome;
         const categoriaDeletada = await Categoria.findOneAndDelete({ nome: nome });
         console.log(categoriaDeletada);
-
+        if (!categoriaDeletada) {
+            return res.status(404).json({ mensagem: "Categoria não encontrada" })
+        }
         return res.status(200).json({ mensagem: "Categoria deletada com sucesso!" });
 
     } catch (error) {
@@ -95,6 +97,22 @@ app.put('/produtos:id', async (req, res) => {
     
 
 
+
+})
+app.delete('/produtos/:nome', async (req, res)=>{
+    try {
+        const nome = req.params.nome;
+        const produtoDeletada = await Produto.findOneAndDelete({ nome: nome });
+        console.log(produtoDeletada);
+        if (!produtoDeletada) {
+            return res.status(404).json({ mensagem: "erro ao deletar produto", error })
+        }
+        return res.status(200).json({ mensagem: "produto deletada com sucesso!" });
+
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ erro: "Erro ao deletar produto" });
+    }
 
 })
 

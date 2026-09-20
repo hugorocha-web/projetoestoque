@@ -27,13 +27,18 @@ let btnnocacate = document.querySelector("#novacate")
 let btncancelarcate = document.querySelector('#cancatebtn')
 let clonepro = document.querySelector('#popup-escuroprodutos')
 let popuppro = document.querySelector('#popup-produto')
+let btnfa = document.querySelector('.fa-x')
+btnfa.addEventListener('click', desligar)
+function desligar(){
+    
+clonepro.style.display = 'none'
+    
 
-clonepro.addEventListener('click', ()=>{
-    clonepro.style.display = 'none'
-})
-popuppro.addEventListener('click', ()=>{
-    console.log('oi')
-    clonepro.style.display = 'flex'
+}
+clonepro.addEventListener('click', desligar)
+popuppro.addEventListener('click', (e)=>{
+    
+    e.stopPropagation();
 })
 btncancelarcate.addEventListener('click', ()=>{
     popup.style.display = "none"
@@ -157,7 +162,6 @@ async function listarProdutos() {
 
             let clone = clonado.cloneNode(true)
             clone.addEventListener('click', async (event)=>{
-                console.log(event.currentTarget.children[1].children[0].textContent)
                 let nomeproduto = event.currentTarget.children[1].children[0].textContent
                 let dados = await fetch(`http://localhost:3000/produtos/${nomeproduto}`, {
                 method: 'GET',
@@ -180,15 +184,35 @@ async function listarProdutos() {
                 clonepro.querySelector('#estoquepro').textContent = "Estoque: "+jsonhere.estoque
                 clonepro.querySelector('#catepro').textContent = "Categoria: "+jsonhere.categoria
                 clonepro.querySelector('#descricaopro').textContent = jsonhere.descrição
-                clonepro.style.display = "flex"
+                clonepro.style.display = 'flex'
+                
                 
             })
-            console.log(clone)
             clone.style.display = 'flex'
             clone.querySelector('#titulopro').textContent = jsonInvertido[i].nome
             clone.querySelector('#categoriapro').textContent = jsonInvertido[i].categoria
             clone.querySelector('#precopro').textContent = "R$ " + jsonInvertido[i].preco
             clone.querySelector('#estoquepro').textContent =jsonInvertido[i].estoque
+            clone.querySelector('#iconelixo').addEventListener('click', async (event) => {
+                event.stopPropagation();
+                let nomehere = event.currentTarget.previousElementSibling.previousElementSibling.children[0].textContent
+                console.log(nomehere)
+                let deletado = await fetch(`http://localhost:3000/produtos/${nomehere}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                
+            }) 
+                await listarProdutos()
+                ultimosProdutos().then(([valor, valor2])=>{
+                document.querySelector('#totalp').textContent = valor
+                document.querySelector('#totalesto').textContent = valor2
+            })
+
+
+
+            })
             let situacao;
             if(jsonInvertido[i].estoque >=1){
                 situacao = "em estoque."

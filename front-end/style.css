@@ -160,6 +160,12 @@ main{
                 }
 
             }
+            #iconelixo{
+                display: none;
+            }
+            .fa-pen{
+                display: none;
+            }
         }
     }
 
@@ -493,6 +499,18 @@ footer{
                 }
 
             }
+            #iconelixo{
+                color: red;
+                margin-left: 20px;
+                font-size: 1.6em;
+                align-self: center;
+            }
+            .fa-pen{
+                color: rgb(117, 116, 116);
+                margin-left: 20px;
+                font-size: 1.6em;
+                align-self: center;
+            }
         }
     }
 
@@ -658,10 +676,13 @@ footer{
         width: 90%;
         border-radius: 20px;
         padding: 20px;
+        .fa-x{
+            font-size: 2em;
+        }
         img{
             align-self: center;
-            width: 200px;
-            height: 200px;
+            width: 300px;
+            height: 300px;
             object-fit: cover;
             margin-bottom: 20px;
             
