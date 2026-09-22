@@ -457,19 +457,23 @@ footer{
         margin-bottom: 110px;
         #produto{
             display: flex;
-            justify-content: center;
             margin-bottom: 23px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.041);
             img{
-                width: 150px;
+                
+                width: 150px;       /* Ocupa a largura total do container do item */
                 height: 150px;
-                object-fit: cover;
-                margin-right: 10px;
-                margin-right: 60px;
-                border-radius: 10px
+                margin-left: 30px;
+                margin-right: 20px;
+                max-height: 200px;       
+                aspect-ratio: 1 / 1;    
+                object-fit: cover;      
+                object-position: center; 
+                border-radius: 10px;
             }
             div{
                 margin-top: 10px;
+                flex: 1 1 300px;
                 #titulopro{
                     min-width: 100px;
                     word-break: break-word;
@@ -494,6 +498,7 @@ footer{
                     justify-content: flex-start;
                     div{
                         display: flex;
+                        flex: 1 1 100px;
                         background-color: darkgrey;
                         padding: 5px;
                         border-radius: 5px;
@@ -516,6 +521,7 @@ footer{
                 margin-left: 20px;
                 font-size: 1.6em;
                 align-self: center;
+                margin-right: 20px
             }
             .fa-pen{
                 color: rgb(117, 116, 116);
