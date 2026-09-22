@@ -502,6 +502,16 @@ async function carregarCategorias() {
                             clone.querySelector('#categoriapro').textContent = json[i].categoria
                             clone.querySelector('#precopro').textContent = "R$ " + json[i].preco
                             clone.querySelector('#estoquepro').textContent = json[i].estoque
+                            let situacao
+
+                            if(json[i].estoque >=1){
+                                situacao = "em estoque."
+                            }
+                            else{
+                                situacao = "fora de estoque."
+                            }
+
+                            clone.querySelector('#situacaopro').textContent = situacao
 
                             let img = clone.querySelector('#imgpro')
                             img.src = json[i].imagem
