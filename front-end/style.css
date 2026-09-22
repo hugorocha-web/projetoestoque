@@ -466,6 +466,7 @@ footer{
                 object-fit: cover;
                 margin-right: 10px;
                 margin-right: 60px;
+                border-radius: 10px
             }
             div{
                 margin-top: 10px;
@@ -696,7 +697,8 @@ footer{
             height: 300px;
             object-fit: cover;
             margin-bottom: 20px;
-            
+            border-radius: 10px
+
         }
         h1{
             margin-bottom: 20px;
