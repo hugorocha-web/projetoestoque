@@ -1,9 +1,13 @@
 import express from 'express'
 import mongoose from 'mongoose'
 import cors from 'cors'
+import { WebSocketServer } from 'ws'
+import {createServer} from 'http'
 
 const app = express()
-
+const port = process.env.PORT || 3000
+const server = createServer(app)
+const wss = new WebSocketServer({server})
 
 //primeiro iniciar o mongoose
 mongoose.connect(process.env.MONGODB_URI)
@@ -32,6 +36,11 @@ const Categoria = mongoose.model('Categoria', categoriaSchema)
 const Produto = mongoose.model('Produto', produtoSchema)
 
 
+wss.on('connection', (ws)=>{
+    console.log('as')
+
+})
+
 
 app.use(cors())
 app.use(express.json())
@@ -46,6 +55,7 @@ app.post('/categorias', async (req, res)=>{
         let novacategoria= req.body
         let nova = await Categoria.create(novacategoria)
         res.json(nova)
+        
     }
     catch(error){
         res.status(500).json({ mensagem: "Erro ao criar categoria" })
@@ -129,6 +139,9 @@ app.post('/produtos', async (req, res) => {
         let novoproduto= req.body
         let produtoNovo = await Produto.create(novoproduto)
         res.json(produtoNovo)
+        wss.clients.forEach(cliente=>{
+            cliente.send('novo-pro')
+        })
     }
     catch(error){
         console.log(error)
@@ -138,7 +151,7 @@ app.post('/produtos', async (req, res) => {
 })
 
 
-app.listen(3000, ()=>{
+server.listen(port, ()=>{
 
     console.log('rodando na porta 3000')
 })

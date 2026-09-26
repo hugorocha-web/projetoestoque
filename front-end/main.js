@@ -29,6 +29,18 @@ let clonepro = document.querySelector('#popup-escuroprodutos')
 let popuppro = document.querySelector('#popup-produto')
 let btnfa = document.querySelector('.fa-x')
 let po = document.querySelector('#popup')
+let socket = new WebSocket('wss://projetoestoque-api.onrender.com')
+
+socket.onopen = ()=>{
+    console.log('sa')
+}
+socket.onmessage=(msg)=>{
+    let mens = msg.data
+    if(mens === "novo-pro"){
+        listarProdutos()
+        ultimosProdutos()
+    }
+}
 
 btnfa.addEventListener('click', desligar)
 
