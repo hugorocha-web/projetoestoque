@@ -379,6 +379,7 @@ async function ultimosProdutos() {
 
 async function carregarCategorias() {
     colocarcate.innerHTML = ''
+    btns.innerHTML = ''
 
     try {
 
@@ -469,7 +470,7 @@ async function carregarCategorias() {
                     let cont = 0
 
                     for (let i = 0; i < json.length; i++) {
-
+                        
                         if (json[i].categoria === event.target.textContent) {
 
                             cont++
@@ -616,7 +617,6 @@ async function addnovacate() {
         })
 
         popup.style.display = 'none'
-        location.reload()
 
     }
     catch(error){

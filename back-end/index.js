@@ -74,6 +74,9 @@ app.delete('/categorias/:nome', async (req, res)=>{
         if (!categoriaDeletada) {
             return res.status(404).json({ mensagem: "Categoria não encontrada" })
         }
+        wss.clients.forEach(cliente=>{
+            cliente.send('deletar-cate')
+        })
         return res.status(200).json({ mensagem: "Categoria deletada com sucesso!" });
 
     } catch (error) {
@@ -117,6 +120,9 @@ app.put('/produtos/:id', async (req, res) => {
 
     res.json(produto)
     console.log(produto)
+    wss.clients.forEach(cliente=>{
+        cliente.send('editar-pro')
+    })
 })
 app.delete('/produtos/:nome', async (req, res)=>{
     try {
@@ -126,7 +132,11 @@ app.delete('/produtos/:nome', async (req, res)=>{
         if (!produtoDeletada) {
             return res.status(404).json({ mensagem: "erro ao deletar produto", error })
         }
+        wss.clients.forEach(cliente=>{
+            cliente.send('deletar-pro')
+        })
         return res.status(200).json({ mensagem: "produto deletada com sucesso!" });
+        
 
     } catch (error) {
         console.error(error);
