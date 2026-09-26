@@ -66,6 +66,7 @@ socket.onmessage=(msg)=>{
         ultimosProdutos()
     }
     else if(mens === "deletar-cate"){
+        console.log('RECEBI DELETAR-CATE')
         carregarCategorias()
     }
 }
