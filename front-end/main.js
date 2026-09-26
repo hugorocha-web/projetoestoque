@@ -36,8 +36,27 @@ socket.onmessage=(msg)=>{
     if(mens === "novo-pro"){
         listarProdutos()
         ultimosProdutos()
+        ultimosProdutos().then(([valor, valor2])=>{
+            document.querySelector('#totalp').textContent = valor
+            document.querySelector('#totalesto').textContent = valor2
+        })
     }
     else if(mens === "novo-cate"){
+        carregarCategorias()
+        
+        carregarCategorias().then((valor)=>{
+            document.querySelector('#totalcate').textContent = valor
+        })
+    }
+    else if(mens === "editar-pro"){
+        listarProdutos()
+        ultimosProdutos()
+    }
+    else if(mens === "deletar-pro"){
+        listarProdutos()
+        ultimosProdutos()
+    }
+    else if(mens === "deletar-cate"){
         carregarCategorias()
     }
 }
@@ -144,16 +163,8 @@ async function criarProduto() {
             fundoPreto.classList.remove('ligado')
         }
 
-        listarProdutos()
 
-        carregarCategorias().then((valor)=>{
-            document.querySelector('#totalcate').textContent = valor
-        })
-
-        ultimosProdutos().then(([valor, valor2])=>{
-            document.querySelector('#totalp').textContent = valor
-            document.querySelector('#totalesto').textContent = valor2
-        })
+        
 
     } 
     catch (error) {
