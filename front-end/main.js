@@ -392,6 +392,10 @@ async function carregarCategorias() {
     colocarcate.innerHTML = ''
     btns.innerHTML = ''
 
+
+    let select = document.querySelector('#categoria')
+    select.innerHTML = ''
+
     try {
 
         let dados = await fetch('https://projetoestoque-api.onrender.com/categorias', {
