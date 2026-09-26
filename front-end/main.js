@@ -37,6 +37,9 @@ socket.onmessage=(msg)=>{
         listarProdutos()
         ultimosProdutos()
     }
+    else if(mens === "novo-cate"){
+        carregarCategorias()
+    }
 }
 
 btnfa.addEventListener('click', desligar)
@@ -425,7 +428,7 @@ async function carregarCategorias() {
                     }
                 })
 
-                location.reload()
+                
             })
 
             clones.querySelector("#quantospro").textContent = contador

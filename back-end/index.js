@@ -37,7 +37,7 @@ const Produto = mongoose.model('Produto', produtoSchema)
 
 
 wss.on('connection', (ws)=>{
-    console.log('as')
+    console.log('conectado')
 
 })
 
@@ -55,6 +55,9 @@ app.post('/categorias', async (req, res)=>{
         let novacategoria= req.body
         let nova = await Categoria.create(novacategoria)
         res.json(nova)
+        wss.clients.forEach(cliente=>{
+            cliente.send('novo-cate')
+        })
         
     }
     catch(error){
