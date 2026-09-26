@@ -153,5 +153,5 @@ app.post('/produtos', async (req, res) => {
 
 server.listen(port, ()=>{
 
-    console.log('rodando na porta 3000')
+    console.log('rodando na porta', port)
 })
