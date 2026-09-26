@@ -52,7 +52,6 @@ socket.onmessage=(msg)=>{
         })
     }
     else if(mens === "novo-cate"){
-        carregarCategorias()
         
         carregarCategorias().then((valor)=>{
             document.querySelector('#totalcate').textContent = valor
